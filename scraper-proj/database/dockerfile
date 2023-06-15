@@ -1,0 +1,15 @@
+FROM postgres:alpine
+
+# Set environment variables
+ENV POSTGRES_DB=database
+ENV POSTGRES_USER=user
+ENV POSTGRES_PASSWORD=password
+
+# Expose PostgreSQL port
+EXPOSE 5432
+
+# Copy custom initialization script to the container
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# Build command for the Docker image
+CMD ["postgres"]
